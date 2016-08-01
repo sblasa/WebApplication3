@@ -1,0 +1,70 @@
+﻿@using WebApplication3.ViewModels
+@model CreateEmployeeViewModel
+@{
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+@section TitleSection{
+    CreateEmployee
+}
+
+@section HeaderSection{
+    <script src="~/Scripts/Validations.js"></script>
+    <script>
+    function ResetForm() {
+        document.getElementById('TxtFName').value = "";
+        document.getElementById('TxtLName').value = "";
+        document.getElementById('TxtSalary').value = "";
+    }
+    </script>
+}
+
+@section ContentBody {
+
+    <div> 
+        <form action="/Employee/SaveEmployee" method="post">
+
+            <table>
+                <tr>
+                    <td>First Name:</td>
+                    <td><input type="text" id="TxtFName" name="FirstName" value="@Model.FirstName" /></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        @Html.ValidationMessage("FirstName")
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td><input type="text" id="TxtLName" name="LastName" value="@Model.LastName" /> </td>
+                   
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        @Html.ValidationMessage("LastName")
+                    </td>
+                </tr>
+                <tr>
+                    <td>Salary:</td>
+                    <td><input type="text" id="TxtSalary" name="Salary" value="@Model.Salary" /></td>
+                <tr>
+                    <td colspan="2">
+                        @Html.ValidationMessage("Salary")
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <input type="submit" name="BtnSubmit" onclick="return IsValid();" value="Save Employee" />
+                        <input type="submit" name="BtnSubmit" value="Cancel" />
+                        <input type="submit" name="BtnReset" onclick="ResetForm();" value="Reset" />
+                    </td>
+
+            </table>
+
+        </form>
+
+    </div>
+}
